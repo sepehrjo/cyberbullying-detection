@@ -1,0 +1,333 @@
+/* ----------------------------------------------------------------------------
+   src/styles/Dashboard.css
+   ---------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+   Global & Container
+   ---------------------------------------------------------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9fb;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ----------------------------------------------------------------------------
+   Dashboard Header (Title + Logout)
+   ---------------------------------------------------------------------------- */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+  flex: 1;
+  margin: 0;
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+
+.logout-button {
+  background-color: #e74c3c; /* red */
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+/* ----------------------------------------------------------------------------
+   Explanation Section (new)
+   ---------------------------------------------------------------------------- */
+.explanation-section {
+  background: #f5f7fa;
+  border: 1px solid #dde2e6;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.explanation-section h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.explanation-section p {
+  margin: 8px 0;
+  line-height: 1.4;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.explanation-section p strong {
+  color: #2c3e50;
+}
+
+.explanation-section hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 12px 0;
+}
+
+/* ----------------------------------------------------------------------------
+   Headings (other pages)
+   ---------------------------------------------------------------------------- */
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* ----------------------------------------------------------------------------
+   Filters Bar
+   ---------------------------------------------------------------------------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filters input[type="text"],
+.filters input[type="number"] {
+  flex: 1 1 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* History button */
+.history-button {
+  margin-left: auto;
+  padding: 8px 14px;
+  background: #3498db;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.history-button:hover {
+  background: #2980b9;
+}
+
+/* Retrain & Cancel buttons */
+.retrain-button,
+.cancel-button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.retrain-button {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.retrain-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.retrain-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  background-color: #c5303f;
+}
+
+/* ----------------------------------------------------------------------------
+   Progress Bar
+   ---------------------------------------------------------------------------- */
+.progress-bar-container {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 8px;
+  height: 28px;
+  overflow: hidden;
+  margin: 10px 0 20px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #4caf50;
+  color: #fff;
+  text-align: center;
+  line-height: 28px;
+  font-weight: bold;
+  transition: width 0.3s ease;
+}
+
+/* ----------------------------------------------------------------------------
+   Retraining Report Table
+   ---------------------------------------------------------------------------- */
+.retrain-report {
+  margin-top: 20px;
+}
+
+.retrain-report h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.retrain-report table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.retrain-report th,
+.retrain-report td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.retrain-report th {
+  background: #3498db;
+  color: #fff;
+}
+
+.best-f1 {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* ----------------------------------------------------------------------------
+   Table Styles (for flagged comments)
+   ---------------------------------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  background: #3498db;
+  color: #fff;
+}
+
+tr:hover {
+  background: #f0f8ff;
+}
+
+/* ----------------------------------------------------------------------------
+   Action Buttons (in‐table)
+   ---------------------------------------------------------------------------- */
+.approve-button,
+.reject-button,
+.delete-button {
+  border: none;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease;
+}
+
+.approve-button {
+  background: #28a745;
+}
+
+.approve-button:hover {
+  opacity: 0.9;
+}
+
+.reject-button {
+  background: #dc3545;
+}
+
+.reject-button:hover {
+  opacity: 0.9;
+}
+
+.delete-button {
+  background: #ffc107;
+  color: #333;
+}
+
+.delete-button:hover {
+  opacity: 0.9;
+}
+
+/* ----------------------------------------------------------------------------
+   History Page Back Button
+   ---------------------------------------------------------------------------- */
+.back-button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background: #2980b9;
+}
+
+/* ----------------------------------------------------------------------------
+   History Chips
+   ---------------------------------------------------------------------------- */
+.history-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.history-chip.approved {
+  background: #28a745;
+}
+
+.history-chip.rejected {
+  background: #dc3545;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- chrome-extension/popup.html -->
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Cyberbully Settings</title>
+  <style>
+    body { font-family: sans-serif; width: 300px; padding: 10px; }
+    .section { margin-bottom: 12px; }
+    label { display: block; margin: 8px 0 4px; }
+    textarea { width: 100%; height: 60px; font-size: 0.9rem; }
+    input[type="range"] { width: 100%; }
+    button { padding: 6px 12px; }
+  </style>
+</head>
+<body>
+  <h4>Extension Settings</h4>
+
+  <div class="section">
+    <label>
+      Detection Sensitivity: <span id="threshVal">80%</span>
+    </label>
+    <input type="range" id="threshold" min="0" max="100" step="1">
+  </div>
+
+  <div class="section">
+    <label>Blocked Words (comma-separated):</label>
+    <textarea id="blockList" placeholder="e.g. spam, abuse, badword"></textarea>
+  </div>
+
+  <div class="section">
+    <label>
+      <input type="checkbox" id="privacyMode">
+      Privacy Mode (blur flagged)
+    </label>
+    <label>
+      <input type="checkbox" id="autoScan">
+      Auto-scan page
+    </label>
+  </div>
+
+  <button id="saveBtn">Save Settings</button>
+  <div id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,176 @@
+/*frontend/moderator-ui/src/App.css
+/* -----------------------------
+   Global / Dashboard + History
+   ----------------------------- */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9fb;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Filters bar */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filters input {
+  flex: 1 1 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.history-link {
+  margin-left: auto;
+  text-decoration: none;
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* Retrain / Cancel buttons */
+.retrain-button,
+.cancel-button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.retrain-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.retrain-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-button:hover {
+  background-color: #c5303f;
+}
+
+/* Progress bar */
+.progress-bar-container {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 8px;
+  height: 28px;
+  overflow: hidden;
+  margin: 10px 0 20px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #4caf50;
+  color: white;
+  text-align: center;
+  line-height: 28px;
+  font-weight: bold;
+  transition: width 0.3s ease;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  background: #3498db;
+  color: white;
+}
+
+tr:hover {
+  background: #f0f8ff;
+}
+
+/* Action Buttons */
+.approve-button,
+.reject-button,
+.delete-button {
+  border: none;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.approve-button {
+  background: #28a745; /* green */
+}
+
+.reject-button {
+  background: #dc3545; /* red */
+}
+
+.delete-button {
+  background: #ffc107; /* yellow */
+  color: #333;
+}
+
+/* Back Button on History */
+.back-button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* History chips */
+.history-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.history-chip.approved {
+  background: #28a745;
+}
+
+.history-chip.rejected {
+  background: #dc3545;
+}
+

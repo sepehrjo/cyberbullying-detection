@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Cyberbully Detector",
+  "version": "1.4",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+
+    "http://localhost:8000/*",
+
+    "https://www.reddit.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.reddit.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Settings"
+  }
+}
+
+
+
+
+
