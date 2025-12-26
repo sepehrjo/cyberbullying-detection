@@ -1,4 +1,4 @@
-# Cyberbully Detector
+# Cyberbully Detector (developed as my Final Year Project (graded A+))
 A comprehensive system to detect and manage cyberbullying on social media (specifically Reddit). This project includes a browser extension for real-time detection, a moderator dashboard for reviewing flagged content, and a FastAPI backend powered by a BERT + BiLSTM machine learning model.
 
 ## Why this project exists
