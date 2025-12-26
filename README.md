@@ -41,9 +41,6 @@ Cyberbullying is a significant issue in online communities. This tool empowers m
 - **Moderation**: Log in to the Moderator Dashboard to see the queue of flagged items.
 - **Retraining**: After labeling items as "approved" or "rejected", you can trigger a model retrain from the dashboard to improve accuracy.
 
-## How to roll back cleanup
-If you need to restore the original folder structure, use:
-- `git checkout cleanup/backup-20251226115638`
 
 ## License
 No license file found.
