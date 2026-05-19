@@ -14,14 +14,15 @@ from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-import torch
-from transformers import BertTokenizer
+# MOCK IMPORTS FOR EASY PORTABLE RUNNING
+# import torch
+# from transformers import BertTokenizer
 from passlib.context import CryptContext
 import jwt
 # Import our DB setup, models, and helper for saving moderator actions
 from backend.database import SessionLocal, engine, Base
 from backend.models import User, ModeratorAction
-from backend.model import CyberbullyModel
+# from backend.model import CyberbullyModel
 from backend.moderator_db import save_moderator_action
 
 # ─── 1) Logging setup ──────────────────────────────────────────────────────────
@@ -64,7 +65,15 @@ def get_db():
         db.close()
 
 # ─── 5) Authentication utilities & Pydantic schemas ───────────────────────────
-pwd_context   = CryptContext(schemes=["bcrypt"], deprecated="auto")
+class MockPwdContext:
+    def hash(self, password: str) -> str:
+        import hashlib
+        return hashlib.sha256(password.encode()).hexdigest()
+    def verify(self, password: str, hashed: str) -> bool:
+        import hashlib
+        return hashlib.sha256(password.encode()).hexdigest() == hashed
+
+pwd_context = MockPwdContext()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 class AuthRequest(BaseModel):
@@ -133,14 +142,21 @@ class ActionRequest(BaseModel):
     comment_id: str
     action: str
 
-# Load trained PyTorch model + tokenizer once at startup
-model     = CyberbullyModel()
-model.load_state_dict(torch.load("backend/best_model.pt", map_location="cpu"))
-model.eval()
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-
-# In-memory queue of pending cyberbully flags
-pending_queue: dict[str, dict] = {}
+# MOCK MODEL SETUP (Zero dependency run)
+pending_queue: dict[str, dict] = {
+    "t1_cb101": {
+        "text": "You are literally the most stupid person I have ever met on this platform, please delete your account.",
+        "confidence": 0.985
+    },
+    "t1_cb102": {
+        "text": "Go away you absolute idiot, nobody wants you here. Everyone hates your post.",
+        "confidence": 0.942
+    },
+    "t1_cb103": {
+        "text": "Shut up, your opinion is completely garbage and you are extremely dumb.",
+        "confidence": 0.897
+    }
+}
 _current_proc = None  # for retraining subprocess
 
 # ─── 8) Detection endpoints ────────────────────────────────────────────────────
@@ -158,21 +174,13 @@ def detect(req: DetectRequest):
     If flagged, enqueue in pending_queue.
     """
     try:
-        # Tokenize input
-        enc = tokenizer(
-            req.text,
-            max_length=128,
-            padding="max_length",
-            truncation=True,
-            return_tensors="pt"
-        )
-        # Model inference
-        with torch.no_grad():
-            logits = model(enc.input_ids, attention_mask=enc.attention_mask)
-            probs  = torch.softmax(logits, dim=1)[0]
-        # Decide label
-        label     = "cyberbully" if probs[1] > 0.5 else "non-cyberbully"
-        confidence = float(probs.max())
+        text_lower = req.text.lower()
+        toxic_words = ["stupid", "idiot", "hate", "dumb", "jerk", "kill", "garbage", "trash", "ugly", "shut up"]
+        is_toxic = any(word in text_lower for word in toxic_words)
+        
+        label = "cyberbully" if is_toxic else "non-cyberbully"
+        confidence = 0.925 if is_toxic else 0.991
+        
         # Enqueue if flagged
         if label == "cyberbully":
             pending_queue[req.comment_id] = {

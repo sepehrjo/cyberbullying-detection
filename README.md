@@ -4,6 +4,17 @@ A comprehensive system to detect and manage cyberbullying on social media (speci
 ## Why this project exists
 Cyberbullying is a significant issue in online communities. This tool empowers moderators by automatically flagging abusive language and providing an interface to review, label, and even retrain the detection model based on human feedback.
 
+## Previews
+
+### Moderator Login
+![Moderator Login](public/screenshots/login.png)
+
+### Flagged Comments Queue (Dashboard)
+![Moderator Dashboard Queue](public/screenshots/dashboard.png)
+
+### Moderation Action History
+![Moderator Action History](public/screenshots/history.png)
+
 ## Project Structure
 - `backend/`: FastAPI server, ML model definitions, and database logic.
 - `frontend/moderator-ui/`: React-based dashboard for moderators.

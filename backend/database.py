@@ -6,12 +6,12 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 # Database URL
 
-DATABASE_URL = "postgresql://sepehrchn:25051378Sc%40@localhost:5432/cyberbullydb"
+DATABASE_URL = "sqlite:///./cyberbully.db"
 
 
 # Engine & Session factory
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False}, echo=True)
 SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
@@ -20,3 +20,4 @@ SessionLocal = sessionmaker(
 
 # Base class for all ORM models
 Base = declarative_base()
+

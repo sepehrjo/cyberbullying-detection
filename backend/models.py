@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 import enum
 
-Base = declarative_base()
+from backend.database import Base
 
 class Status(enum.Enum):
     """
